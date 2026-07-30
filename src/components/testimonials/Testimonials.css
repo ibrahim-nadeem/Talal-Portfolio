@@ -1,0 +1,260 @@
+/* ============================================================
+   TESTIMONIALS — "Signal Pipeline" system (companion to About/Skills)
+   Same graphite/ink base + amber-gold signal accent.
+   Signature here: quote mark rendered as a gold signal blip,
+   avatar ring echoes the profile-card ring in About.
+   ============================================================ */
+
+:root{
+  --ink:#0b0d10;
+  --ink-2:#111418;
+  --panel:rgba(255,255,255,.04);
+  --panel-strong:rgba(255,255,255,.07);
+  --line:rgba(255,255,255,.09);
+  --steel:#8891a3;
+  --steel-soft:#5c6577;
+  --gold:#e8b04b;
+  --gold-soft:#f6d488;
+  --gold-dim:rgba(232,176,75,.16);
+  --ember:#ff8b5e;
+  --text:#f4f2ee;
+  --text-dim:#a9b0bc;
+}
+
+.testimonials{
+  position:relative;
+  padding:130px 8%;
+  background:var(--ink);
+  overflow:hidden;
+  color:var(--text);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  isolation:isolate;
+}
+
+.testimonials::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 70% 55% at 50% 30%, #000 30%, transparent 75%);
+  pointer-events:none;
+  z-index:0;
+}
+
+.testimonials::after{
+  content:"";
+  position:absolute;
+  width:480px;
+  height:480px;
+  bottom:-190px;
+  right:-190px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(232,176,75,.08), transparent 70%);
+  filter:blur(70px);
+  z-index:0;
+}
+
+.testimonial-heading{
+  max-width:750px;
+  margin:0 auto 70px;
+  text-align:center;
+  position:relative;
+  z-index:2;
+}
+
+.section-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 18px 9px 14px;
+  border-radius:100px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  color:var(--gold-soft);
+  font-size:12.5px;
+  font-weight:600;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:22px;
+}
+.section-tag::before{
+  content:"";
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--gold);
+}
+
+.testimonial-heading h2{
+  font-size:50px;
+  font-weight:800;
+  letter-spacing:-1.4px;
+  line-height:1.15;
+  margin-bottom:20px;
+  color:var(--text);
+}
+
+.testimonial-heading h2 span{
+  background:linear-gradient(100deg, var(--gold-soft), var(--gold) 60%, var(--ember));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.testimonial-heading p{
+  color:var(--text-dim);
+  font-size:17px;
+  line-height:1.85;
+}
+
+.slider{
+  position:relative;
+  overflow:hidden;
+  width:100%;
+  z-index:2;
+  mask-image:linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image:linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.slider-track{
+  display:flex;
+  width:max-content;
+  gap:26px;
+}
+
+.testimonial-card{
+  width:380px;
+  flex-shrink:0;
+  padding:34px;
+  border-radius:22px;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  background:var(--panel);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--line);
+  transition:transform .4s cubic-bezier(.16,1,.3,1), border-color .4s, background .4s, box-shadow .4s;
+  box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+.testimonial-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:22px;
+  padding:1px;
+  background:linear-gradient(135deg, rgba(232,176,75,.35), rgba(255,139,94,.2));
+  -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .4s;
+}
+
+.testimonial-card::after{
+  /* sweeping signal light, ties this card into the same pipeline motif */
+  content:"";
+  position:absolute;
+  top:0;
+  left:-60%;
+  width:40%;
+  height:100%;
+  background:linear-gradient(100deg, transparent, rgba(232,176,75,.1), transparent);
+  transform:skewX(-15deg);
+  transition:left .6s ease;
+  pointer-events:none;
+}
+
+.testimonial-card:hover{
+  border-color:rgba(232,176,75,.35);
+  background:rgba(232,176,75,.05);
+  box-shadow:0 25px 50px rgba(232,176,75,.14);
+}
+
+.testimonial-card:hover::before{ opacity:1; }
+.testimonial-card:hover::after{ left:130%; }
+
+.testimonial-card:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:4px;
+}
+
+.quote{
+  color:var(--gold);
+  margin-bottom:16px;
+  opacity:.9;
+}
+
+.stars{
+  display:flex;
+  gap:4px;
+  color:var(--gold-soft);
+  margin-bottom:20px;
+}
+
+.review{
+  color:var(--text-dim);
+  line-height:1.9;
+  font-size:15px;
+  margin-bottom:28px;
+}
+
+.client{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  position:relative;
+  z-index:2;
+}
+
+.avatar{
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  flex-shrink:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:20px;
+  font-weight:700;
+  color:var(--ink);
+  background:linear-gradient(135deg, var(--gold-soft), var(--gold));
+  box-shadow:0 10px 22px rgba(232,176,75,.22);
+}
+
+.client h4{
+  font-size:17px;
+  font-weight:600;
+  letter-spacing:-.2px;
+  margin-bottom:4px;
+  color:var(--text);
+}
+
+.client span{
+  color:var(--steel);
+  font-size:13.5px;
+}
+
+@media(prefers-reduced-motion: reduce){
+  .testimonial-card::after{
+    animation:none !important;
+    transition:none !important;
+  }
+}
+
+@media(max-width:992px){
+  .testimonials{ padding:100px 6%; }
+  .testimonial-heading h2{ font-size:40px; }
+  .testimonial-card{ width:330px; padding:30px; }
+}
+
+@media(max-width:768px){
+  .testimonial-heading h2{ font-size:34px; }
+  .testimonial-heading p{ font-size:16px; }
+  .testimonial-card{ width:300px; padding:25px; }
+  .avatar{ width:52px; height:52px; font-size:19px; }
+}
