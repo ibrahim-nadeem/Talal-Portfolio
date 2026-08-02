@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import "./EmailOutreach.css";
 import { useNavigate } from "react-router-dom";
 
- 
 const EnvelopeIcon = (props) => (
   <svg viewBox="0 0 48 32" width="28" height="19" {...props}>
     <rect
@@ -317,11 +316,32 @@ export default function EmailOutreach() {
           </p>
           <div className="hero-cta">
             <button
-              className="btn btn-primary"
               onClick={() => navigate("/contact")}
+              style={{
+                fontFamily: "'Inter', -apple-system, sans-serif",
+                fontWeight: 600,
+                fontSize: "0.95rem",
+                padding: "0.85rem 1.6rem",
+                borderRadius: "999px",
+                border: "1.5px solid transparent",
+                cursor: "pointer",
+                background: "#e8a33d",
+                color: "#10151c",
+                transition:
+                  "transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.boxShadow =
+                  "0 10px 24px -8px rgba(232, 163, 61, 0.55)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
             >
-              Start a campaign
-            </button>{" "}
+              Plan your Route
+            </button>
           </div>
         </div>
         <div className="hero-envelope-wrap" aria-hidden="true">
@@ -361,7 +381,7 @@ export default function EmailOutreach() {
       <footer className="cta-footer">
         <div className="perforation" aria-hidden="true" />
         <h2>Ready to send your first campaign?</h2>
-        </footer>
+      </footer>
     </div>
   );
 }
