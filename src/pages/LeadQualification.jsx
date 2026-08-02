@@ -831,36 +831,6 @@ export default function LeadQualificationPage() {
             ))}
           </div>
         </main>
-
-        {/* ---------------- Footer ---------------- */}
-        <footer className="lq-footer">
-          <div className="lq-footer-grid">
-            <div>
-              <h4>What I evaluate</h4>
-              <p>
-                ICP fit, business needs, company size, industry, budget, and
-                decision-making authority — verified before a lead ever reaches
-                sales.
-              </p>
-            </div>
-            <div>
-              <h4>Tooling</h4>
-              <p>
-                LinkedIn, company websites, and prospecting databases for
-                research; CRM for qualification status, engagement history, and
-                handoff notes.
-              </p>
-            </div>
-            <div>
-              <h4>Outcome</h4>
-              <p>
-                Filtering out unqualified prospects improved response rates and
-                handed the sales team a shorter, higher-confidence list to work.
-              </p>
-            </div>
-          </div>
-          <div className="lq-footer-bottom"></div>
-        </footer>
       </div>
       <Footer />
     </>

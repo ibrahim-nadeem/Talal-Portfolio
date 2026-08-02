@@ -385,24 +385,76 @@
 /* ---------------------------------- */
 /* Footer                              */
 /* ---------------------------------- */
+/* ---------------- Footer ---------------- */
+.lg-footer {
+  margin-top: 64px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 48px 32px 24px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
 .lg-footer-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  padding-top: 28px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  animation: lg-fade-up 0.5s ease-out 0.1s both;
+  gap: 32px;
+  max-width: 1080px;
+  margin: 0 auto;
 }
-.lg-footer-grid h4 { font-size: 13.5px; margin: 0 0 8px; }
-.lg-footer-grid p { font-size: 13px; color: #7c8798; line-height: 1.6; margin: 0; }
 
-@media (max-width: 820px) {
-  .lg-stats-row { grid-template-columns: repeat(2, 1fr); }
-  .lg-grid-2 { grid-template-columns: 1fr; }
-  .lg-month-grid { grid-template-columns: repeat(2, 1fr); }
-  .lg-footer-grid { grid-template-columns: 1fr; 
-    padding: 41px;
-  
+.lg-footer-grid h4 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #e6e9ef;
+  text-transform: uppercase;
+}
+
+.lg-footer-grid p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.lg-footer-bottom {
+  max-width: 1080px;
+  margin: 32px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+}
+
+/* ---------------- Tablet ---------------- */
+@media (max-width: 900px) {
+  .lg-footer {
+    padding: 40px 24px 20px;
   }
-  .lg-stage-row { grid-template-columns: 1fr; }
+  .lg-footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 24px;
+  }
+}
+
+/* ---------------- Mobile ---------------- */
+@media (max-width: 560px) {
+  .lg-footer {
+    padding: 36px 20px 20px;
+  }
+  .lg-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .lg-footer-grid h4 {
+    font-size: 12.5px;
+  }
+  .lg-footer-grid p {
+    font-size: 13px;
+  }
+  .lg-footer-bottom {
+    margin-top: 24px;
+    font-size: 12px;
+  }
 }

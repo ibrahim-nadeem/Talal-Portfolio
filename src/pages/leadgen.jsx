@@ -400,10 +400,6 @@ export default function LeadGenPage() {
       <div className="lg-root">
         <Navbar />
         <main className="lg-main">
-          <nav className="lg-breadcrumb">
-            Portfolio <span className="lg-chev">›</span> Lead Generation
-          </nav>
-
           <h1 className="lg-title">Lead Generation</h1>
           <p className="lg-subtitle">
             How I build and measure a capture-to-conversion funnel — the
@@ -584,33 +580,7 @@ export default function LeadGenPage() {
         </main>
 
         {/* ---------------- Footer ---------------- */}
-        <footer className="lg-footer">
-          <div className="lg-footer-grid">
-            <div>
-              <h4>What I measure</h4>
-              <p>
-                Traffic quality, form completion, lead score distribution, MQL
-                rate and cost per acquired customer — reviewed weekly, not
-                quarterly.
-              </p>
-            </div>
-            <div>
-              <h4>Tooling</h4>
-              <p>
-                React landing pages, event tracking, CRM sync and automated
-                scoring rules wired into email and ad platforms.
-              </p>
-            </div>
-            <div>
-              <h4>Typical timeline</h4>
-              <p>
-                Two weeks to instrument and baseline, four weeks to optimise
-                copy and targeting, ongoing iteration from there.
-              </p>
-            </div>
-          </div>
-          <div className="lg-footer-bottom"></div>
-        </footer>
+        
       </div>
       <Footer />
     </>
