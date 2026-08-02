@@ -310,7 +310,7 @@ const Contact = () => {
                   </span>
                   <div>
                     <p className="info-label">Phone</p>
-                    <p className="info-value">+92 331-967-066-9</p>
+                    <p className="info-value">+92 3094227256</p>
                   </div>
                 </li>
 

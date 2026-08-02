@@ -1,5 +1,6 @@
 import "./About.css";
 import { motion } from "framer-motion";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   FaGlobe,
   FaEnvelope,
@@ -9,16 +10,41 @@ import {
 } from "react-icons/fa";
 
 const skills = [
-  { icon: <FaGlobe size={20} />, title: "LinkedIn Lead Generation" },
-  { icon: <FaEnvelope size={20} />, title: "Email Outreach" },
-  { icon: <FaUsers size={20} />, title: "Lead Qualification" },
-  { icon: <FaBullseye size={20} />, title: "Business Strategy" },
+  {
+    icon: <FaGlobe size={20} />,
+    title: "LinkedIn Lead Generation",
+    path: "/lead-gen",
+  },
+  {
+    icon: <FaEnvelope size={20} />,
+    title: "Email Outreach",
+    path: "/email-outreach",
+  },
+  {
+    icon: <FaUsers size={20} />,
+    title: "Lead Qualification",
+    path: "/lead-qualification",
+  },
+  {
+    icon: <FaBullseye size={20} />,
+    title: "Business Strategy",
+    path: "/strategy",
+  },
+];
+
+const routeLinks = [
+  { to: "/lead-gen", label: "Lead Gen" },
+  { to: "/email-outreach", label: "Email Outreach" },
+  { to: "/lead-qualification", label: "Lead Qualification" },
+  { to: "/strategy", label: "Strategy" },
 ];
 
 export default function About() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   return (
     <section className="about" id="about">
-      {/* signature signal-pipeline motif */}
       <div className="signal-track">
         <div className="signal-path one">
           <div className="signal-dot" />
@@ -28,8 +54,23 @@ export default function About() {
         </div>
       </div>
 
+      <nav className="signal-nav">
+        {routeLinks.map((r) => {
+          const isActive = location.pathname === r.to;
+          return (
+            <Link
+              key={r.to}
+              to={r.to}
+              className={`signal-nav-link${isActive ? " is-active" : ""}`}
+            >
+              <span className="nav-dot" />
+              {r.label}
+            </Link>
+          );
+        })}
+      </nav>
+
       <div className="about-container">
-        {/* Left Side */}
         <motion.div
           className="about-left"
           initial={{ opacity: 0, x: -80 }}
@@ -53,7 +94,9 @@ export default function About() {
             </div>
 
             <h2>Talal Butt</h2>
-            <span className="role">Senior Business Development Specialist</span>
+            <span className="role">
+              Senior Business Developer & lead-generation specialist
+            </span>
 
             <div className="experience-box">
               <span className="pulse-dot" />
@@ -63,7 +106,6 @@ export default function About() {
           </motion.div>
         </motion.div>
 
-        {/* Right Side */}
         <motion.div
           className="about-right"
           initial={{ opacity: 0, x: 80 }}
@@ -102,6 +144,12 @@ export default function About() {
               <motion.div
                 key={index}
                 className="skill-card"
+                role="link"
+                tabIndex={0}
+                onClick={() => navigate(item.path)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") navigate(item.path);
+                }}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

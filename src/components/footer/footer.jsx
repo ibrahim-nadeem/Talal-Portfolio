@@ -69,7 +69,7 @@ export default function Footer() {
     {
       icon: <FaWhatsapp />,
       label: "WhatsApp",
-      link: "https://wa.me/9233179670669",
+      link: "https://wa.me/+92 3094227256",
     },
   ];
 
@@ -120,9 +120,9 @@ export default function Footer() {
 
           <a href="/#about">About Me</a>
 
-          <a href="/#services">Services</a>
+          <a href="/#skills">Skills</a>
 
-          <a href="/#portfolio">Portfolio</a>
+          <a href="/#about">About Me</a>
 
           <a href="/#testimonials">Testimonials</a>
         </div>
@@ -144,7 +144,7 @@ export default function Footer() {
               <FaPhoneAlt />
             </span>
 
-            <a href="tel:(+92)3319670664">(+92)3319670664</a>
+            <a href="tel:(+92)3319670664">(+92)3094227256</a>
           </p>
 
           <p>

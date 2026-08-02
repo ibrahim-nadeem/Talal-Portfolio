@@ -546,7 +546,8 @@
 
   .mascot,
   .point-arrow {
-    display: none;
+    position: relative;
+    left: 2px;
   }
 
   .form-row {
