@@ -53,23 +53,6 @@ export default function About() {
           <div className="signal-dot" />
         </div>
       </div>
-
-      <nav className="signal-nav">
-        {routeLinks.map((r) => {
-          const isActive = location.pathname === r.to;
-          return (
-            <Link
-              key={r.to}
-              to={r.to}
-              className={`signal-nav-link${isActive ? " is-active" : ""}`}
-            >
-              <span className="nav-dot" />
-              {r.label}
-            </Link>
-          );
-        })}
-      </nav>
-
       <div className="about-container">
         <motion.div
           className="about-left"
