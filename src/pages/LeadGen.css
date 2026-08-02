@@ -400,6 +400,9 @@
   .lg-stats-row { grid-template-columns: repeat(2, 1fr); }
   .lg-grid-2 { grid-template-columns: 1fr; }
   .lg-month-grid { grid-template-columns: repeat(2, 1fr); }
-  .lg-footer-grid { grid-template-columns: 1fr; }
+  .lg-footer-grid { grid-template-columns: 1fr; 
+    padding: 41px;
+  
+  }
   .lg-stage-row { grid-template-columns: 1fr; }
 }

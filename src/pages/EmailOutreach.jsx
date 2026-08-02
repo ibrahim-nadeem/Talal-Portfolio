@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./EmailOutreach.css";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/nav/navbar";
+import Footer from "../components/footer/Footer";
 
 const EnvelopeIcon = (props) => (
   <svg viewBox="0 0 48 32" width="28" height="19" {...props}>
@@ -303,86 +305,150 @@ export default function EmailOutreach() {
     "M50 0 C 20 40, 80 70, 50 110 S 15 180, 50 220 S 85 290, 50 330 S 15 400, 50 440 S 80 480, 50 500";
 
   return (
-    <div className="eo-page">
-      <section className="hero">
-        <div className="hero-inner">
-          <p className="eyebrow">TRACKING NO. 014 — OUTREACH ROUTE</p>
-          <h1 className="hero-title">
-            Outreach, <em>delivered.</em>
-          </h1>
-          <p className="hero-sub">
-            Every cold email is a small package: it has to be written well, sent
-            at the right pace, and actually arrive. Here's the route from draft
-            to customer.
-          </p>
-          <div className="hero-cta">
-            <button
-              onClick={() => navigate("/contact")}
-              style={{
-                fontFamily: "'Inter', -apple-system, sans-serif",
-                fontWeight: 600,
-                fontSize: "0.95rem",
-                padding: "0.85rem 1.6rem",
-                borderRadius: "999px",
-                border: "1.5px solid transparent",
-                cursor: "pointer",
-                background: "#e8a33d",
-                color: "#10151c",
-                transition:
-                  "transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow =
-                  "0 10px 24px -8px rgba(232, 163, 61, 0.55)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "none";
-              }}
-            >
-              Plan your Route
-            </button>
-          </div>
-        </div>
-        <div className="hero-envelope-wrap" aria-hidden="true">
-          <div className="hero-envelope">
-            <div className="hero-envelope-body">
-              <div className="hero-envelope-flap" />
-              <div className="hero-envelope-seal" />
-            </div>
-            <div className="hero-envelope-trail" />
-          </div>
-        </div>
-      </section>
+    <>
+      <div className="eo-page">
+        <Navbar />
 
-      <section className="journey" ref={journeyRef}>
-        <div className="journey-intro">
-          <span className="eyebrow">THE ROUTE</span>
-          <h2>Five stops, one delivery.</h2>
-        </div>
-        <div className="journey-track">
-          <FlightPath pathD={pathD} containerRef={journeyRef} />
-          <div className="stage-list">
-            {STAGES.map((stage, i) => (
-              <Stage stage={stage} index={i} key={stage.code} />
+        <section className="hero">
+          <div className="hero-inner">
+            <p className="eyebrow">TRACKING NO. 014 — OUTREACH ROUTE</p>
+            <h1 className="hero-title">
+              Outreach, <em>delivered.</em>
+            </h1>
+            <p className="hero-sub">
+              Every cold email is a small package: it has to be written well,
+              sent at the right pace, and actually arrive. Here's the route from
+              draft to customer.
+            </p>
+            <div className="hero-cta">
+              <button
+                onClick={() => navigate("/contact")}
+                style={{
+                  fontFamily: "'Inter', -apple-system, sans-serif",
+                  fontWeight: 600,
+                  fontSize: "0.95rem",
+                  padding: "0.85rem 1.6rem",
+                  borderRadius: "999px",
+                  border: "1.5px solid transparent",
+                  cursor: "pointer",
+                  background: "#e8a33d",
+                  color: "#10151c",
+                  transition:
+                    "transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 10px 24px -8px rgba(232, 163, 61, 0.55)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              >
+                Plan your Route
+              </button>
+            </div>
+          </div>
+          <div className="hero-envelope-wrap" aria-hidden="true">
+            <div className="hero-envelope">
+              <div className="hero-envelope-body">
+                <div className="hero-envelope-flap" />
+                <div className="hero-envelope-seal" />
+              </div>
+              <div className="hero-envelope-trail" />
+            </div>
+          </div>
+        </section>
+
+        <section className="journey" ref={journeyRef}>
+          <div className="journey-intro">
+            <span className="eyebrow">THE ROUTE</span>
+            <h2>Five stops, one delivery.</h2>
+          </div>
+          <div className="journey-track">
+            <FlightPath pathD={pathD} containerRef={journeyRef} />
+            <div className="stage-list">
+              {STAGES.map((stage, i) => (
+                <Stage stage={stage} index={i} key={stage.code} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="stats">
+          <div className="stats-inner">
+            {STATS.map((s) => (
+              <StatCounter key={s.label} {...s} />
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="stats">
-        <div className="stats-inner">
-          {STATS.map((s) => (
-            <StatCounter key={s.label} {...s} />
-          ))}
-        </div>
-      </section>
+        <footer className="cta-footer">
+          <div className="perforation" aria-hidden="true" />
+          <h2>Ready to send your first campaign?</h2>
+          <p className="cta-footer-sub">
+            Plan the route, write the drafts, and let the send-and-track loop do
+            the rest.
+          </p>
+          <button
+            onClick={() => navigate("/contact")}
+            className="cta-footer-btn"
+            style={{
+              fontFamily: "'Inter', -apple-system, sans-serif",
+              fontWeight: 600,
+              fontSize: "0.95rem",
+              padding: "0.85rem 1.6rem",
+              borderRadius: "999px",
+              border: "1.5px solid transparent",
+              cursor: "pointer",
+              background: "#e8a33d",
+              color: "#10151c",
+              marginTop: "1.25rem",
+              transition:
+                "transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.boxShadow =
+                "0 10px 24px -8px rgba(232, 163, 61, 0.55)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = "none";
+            }}
+          >
+            Plan your Route
+          </button>
 
-      <footer className="cta-footer">
-        <div className="perforation" aria-hidden="true" />
-        <h2>Ready to send your first campaign?</h2>
-      </footer>
-    </div>
+          <div className="cta-footer-grid">
+            <div>
+              <h4>What I set up</h4>
+              <p>
+                Personalized drafts, warmed-up sending domains, and a paced
+                queue that keeps deliverability high.
+              </p>
+            </div>
+            <div>
+              <h4>Tooling</h4>
+              <p>
+                Sequencing tools, inbox rotation, deliverability monitoring, and
+                CRM sync for every reply.
+              </p>
+            </div>
+            <div>
+              <h4>Outcome</h4>
+              <p>
+                Higher open and reply rates, tracked end to end from first send
+                to booked meeting.
+              </p>
+            </div>
+          </div>
+
+          <div className="cta-footer-bottom"></div>
+        </footer>
+      </div>
+      <Footer />
+    </>
   );
 }

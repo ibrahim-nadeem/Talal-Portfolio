@@ -18,6 +18,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import Navbar from "../components/nav/navbar";
+import Footer from "../components/footer/Footer";
 
 const BASE_STATS = {
   leadsQualified: 6240,
@@ -611,255 +613,256 @@ export default function LeadQualificationPage() {
     monthCounts.filter;
 
   return (
-    <div className="lq-root">
-      <header className="lq-topbar">
-        <div className="lq-topbar-left">
-          <span className="lq-dot" />
-          <span className="lq-brand">Lead Magnet Studio</span>
-        </div>
-        <div className="lq-topbar-right">
-          <span className="lq-pulse-badge">
-            <span className="lq-pulse-dot" />
-            live
-          </span>
-        </div>
-      </header>
+    <>
+      <div className="lq-root">
+        <Navbar />
 
-      <main className="lq-main">
-        <nav className="lq-breadcrumb">
-          Portfolio <span className="lq-chev">›</span> Lead Qualification
-        </nav>
+        <main className="lq-main">
+          <nav className="lq-breadcrumb">
+            Portfolio <span className="lq-chev">›</span> Lead Qualification
+          </nav>
 
-        <Reveal delay={0}>
-          <h1 className="lq-title">Lead Qualification</h1>
-        </Reveal>
-        <Reveal delay={80}>
-          <p className="lq-subtitle">
-            How I score, verify, and prioritize inbound and outbound leads
-            against the Ideal Customer Profile — before they ever reach sales.
+          <Reveal delay={0}>
+            <h1 className="lq-title">Lead Qualification</h1>
+          </Reveal>
+          <Reveal delay={80}>
+            <p className="lq-subtitle">
+              How I score, verify, and prioritize inbound and outbound leads
+              against the Ideal Customer Profile — before they ever reach sales.
+            </p>
+          </Reveal>
+          <Reveal delay={140}>
+            <div className="lq-service-badge">Process · Ongoing</div>
+          </Reveal>
+
+          <hr className="lq-hr" />
+
+          {/* ---------------- Top stats ---------------- */}
+          <section className="lq-stats-row">
+            <Reveal delay={0} className="lq-stat">
+              <div className="lq-stat-value">{fmtNumber(leadsDisplay)}</div>
+              <div className="lq-stat-label">Leads qualified</div>
+            </Reveal>
+            <Reveal delay={60} className="lq-stat">
+              <div className="lq-stat-value">{fmtNumber(sqlDisplay)}</div>
+              <div className="lq-stat-label">SQLs identified</div>
+            </Reveal>
+            <Reveal delay={120} className="lq-stat">
+              <div className="lq-stat-value">+{stats.responseRateLift}%</div>
+              <div className="lq-stat-label">Response rate lift</div>
+            </Reveal>
+            <Reveal delay={180} className="lq-stat">
+              <div className="lq-stat-value">
+                {stats.qualificationAccuracy}%
+              </div>
+              <div className="lq-stat-label">Qualification accuracy</div>
+            </Reveal>
+          </section>
+
+          {/* ---------------- New this month strip ---------------- */}
+          <Reveal delay={100}>
+            <section className="lq-month-strip">
+              <div className="lq-month-head">
+                <h2>Activity this month</h2>
+                <p>
+                  Every research, scoring, and handoff event rolls up live as it
+                  happens.
+                </p>
+              </div>
+              <div className="lq-month-grid">
+                <MonthTile
+                  icon="search"
+                  label="Prospects researched"
+                  value={monthCounts.research}
+                />
+                <MonthTile
+                  icon="scale"
+                  label="Leads evaluated"
+                  value={monthCounts.evaluate}
+                />
+                <MonthTile
+                  icon="target"
+                  label="Qualified to ICP"
+                  value={monthCounts.qualify}
+                />
+                <MonthTile
+                  icon="flag"
+                  label="Marked as SQL"
+                  value={monthCounts.sql}
+                />
+                <MonthTile
+                  icon="database"
+                  label="CRM records updated"
+                  value={monthCounts.crm}
+                />
+                <MonthTile
+                  icon="flag"
+                  label="Total events"
+                  value={totalThisMonth}
+                  accent
+                />
+              </div>
+            </section>
+          </Reveal>
+
+          {/* ---------------- Charts ---------------- */}
+          <h2 className="lq-section-title">Qualification performance</h2>
+          <p className="lq-section-sub">
+            From first research touch to a sales-ready, ICP-matched opportunity.
           </p>
-        </Reveal>
-        <Reveal delay={140}>
-          <div className="lq-service-badge">Process · Ongoing</div>
-        </Reveal>
 
-        <hr className="lq-hr" />
+          <div className="lq-grid-2">
+            <Reveal delay={0} className="lq-card">
+              <CardToolbar />
+              <h3 className="lq-card-title">Research to SQL trend</h3>
+              <p className="lq-card-sub">
+                Researched, qualified, and SQL volume — last 6 months
+              </p>
+              <TrendChart data={trend} />
+              <div className="lq-legend">
+                <span>
+                  <i style={{ background: "#f97316" }} />
+                  Researched
+                </span>
+                <span>
+                  <i style={{ background: "#22c55e" }} />
+                  Qualified
+                </span>
+                <span>
+                  <i style={{ background: "#3b82f6" }} />
+                  SQL
+                </span>
+              </div>
+            </Reveal>
 
-        {/* ---------------- Top stats ---------------- */}
-        <section className="lq-stats-row">
-          <Reveal delay={0} className="lq-stat">
-            <div className="lq-stat-value">{fmtNumber(leadsDisplay)}</div>
-            <div className="lq-stat-label">Leads qualified</div>
-          </Reveal>
-          <Reveal delay={60} className="lq-stat">
-            <div className="lq-stat-value">{fmtNumber(sqlDisplay)}</div>
-            <div className="lq-stat-label">SQLs identified</div>
-          </Reveal>
-          <Reveal delay={120} className="lq-stat">
-            <div className="lq-stat-value">+{stats.responseRateLift}%</div>
-            <div className="lq-stat-label">Response rate lift</div>
-          </Reveal>
-          <Reveal delay={180} className="lq-stat">
-            <div className="lq-stat-value">{stats.qualificationAccuracy}%</div>
-            <div className="lq-stat-label">Qualification accuracy</div>
-          </Reveal>
-        </section>
+            <Reveal delay={100} className="lq-card">
+              <h3 className="lq-card-title">Lead source mix</h3>
+              <p className="lq-card-sub">
+                Where researched leads are verified from
+              </p>
+              <SourceChart data={sources} />
+              <div className="lq-channel-list">
+                {sources.map((s, i) => (
+                  <span key={s.key}>
+                    <i
+                      style={{
+                        background: CHART_COLORS[i % CHART_COLORS.length],
+                      }}
+                    />
+                    {s.channel} · {s.value}%
+                  </span>
+                ))}
+              </div>
+            </Reveal>
+          </div>
 
-        {/* ---------------- New this month strip ---------------- */}
-        <Reveal delay={100}>
-          <section className="lq-month-strip">
-            <div className="lq-month-head">
-              <h2>Activity this month</h2>
+          <div className="lq-grid-2">
+            <Reveal delay={0} className="lq-card">
+              <CardToolbar />
+              <h3 className="lq-card-title">ICP evaluation criteria</h3>
+              <p className="lq-card-sub">
+                Average score across pain point, intent, growth, budget,
+                authority, and fit
+              </p>
+              <CriteriaChart data={criteria} />
+            </Reveal>
+
+            <Reveal delay={100} className="lq-card">
+              <h3 className="lq-card-title">ICP fit distribution</h3>
+              <p className="lq-card-sub">
+                Where the qualified pool lands, this quarter
+              </p>
+              <FitChart data={fit} />
+            </Reveal>
+          </div>
+
+          {/* ---------------- Live activity feed ---------------- */}
+          <h2 className="lq-section-title">Live activity</h2>
+          <p className="lq-section-sub">
+            Research, evaluation, scoring, and handoff events as they happen.
+          </p>
+
+          <Reveal delay={0}>
+            <div className="lq-card lq-feed-card">
+              {feed.length === 0 && (
+                <div className="lq-feed-empty">
+                  Waiting for the first event…
+                </div>
+              )}
+              <ul className="lq-feed-list">
+                {feed.map((item) => (
+                  <li
+                    key={item.id}
+                    className={`lq-feed-item lq-feed-${item.type}`}
+                  >
+                    <span className="lq-feed-icon">
+                      <Icon name={FEED_ICON[item.type] || "search"} size={14} />
+                    </span>
+                    <span className="lq-feed-text">
+                      <strong>{item.verb}</strong>
+                      <span className="lq-feed-name">
+                        {" "}
+                        — {item.name}, {item.company}
+                      </span>
+                      <span className="lq-feed-channel"> · {item.channel}</span>
+                    </span>
+                    <span className="lq-feed-time">
+                      {timeAgo(item.ts, now)}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+
+          {/* ---------------- Process stages ---------------- */}
+          <h2 className="lq-section-title">How I qualify a lead</h2>
+          <div className="lq-stages">
+            {STAGES.map((s, i) => (
+              <Reveal delay={i * 70} key={s.n} className="lq-stage-row">
+                <div className="lq-stage-icon">
+                  <Icon name={s.icon} size={16} />
+                </div>
+                <div className="lq-stage-title">
+                  <span className="lq-stage-n">{s.n}</span> {s.title}
+                </div>
+                <div className="lq-stage-body">{s.body}</div>
+              </Reveal>
+            ))}
+          </div>
+        </main>
+
+        {/* ---------------- Footer ---------------- */}
+        <footer className="lq-footer">
+          <div className="lq-footer-grid">
+            <div>
+              <h4>What I evaluate</h4>
               <p>
-                Every research, scoring, and handoff event rolls up live as it
-                happens.
+                ICP fit, business needs, company size, industry, budget, and
+                decision-making authority — verified before a lead ever reaches
+                sales.
               </p>
             </div>
-            <div className="lq-month-grid">
-              <MonthTile
-                icon="search"
-                label="Prospects researched"
-                value={monthCounts.research}
-              />
-              <MonthTile
-                icon="scale"
-                label="Leads evaluated"
-                value={monthCounts.evaluate}
-              />
-              <MonthTile
-                icon="target"
-                label="Qualified to ICP"
-                value={monthCounts.qualify}
-              />
-              <MonthTile
-                icon="flag"
-                label="Marked as SQL"
-                value={monthCounts.sql}
-              />
-              <MonthTile
-                icon="database"
-                label="CRM records updated"
-                value={monthCounts.crm}
-              />
-              <MonthTile
-                icon="flag"
-                label="Total events"
-                value={totalThisMonth}
-                accent
-              />
+            <div>
+              <h4>Tooling</h4>
+              <p>
+                LinkedIn, company websites, and prospecting databases for
+                research; CRM for qualification status, engagement history, and
+                handoff notes.
+              </p>
             </div>
-          </section>
-        </Reveal>
-
-        {/* ---------------- Charts ---------------- */}
-        <h2 className="lq-section-title">Qualification performance</h2>
-        <p className="lq-section-sub">
-          From first research touch to a sales-ready, ICP-matched opportunity.
-        </p>
-
-        <div className="lq-grid-2">
-          <Reveal delay={0} className="lq-card">
-            <CardToolbar />
-            <h3 className="lq-card-title">Research to SQL trend</h3>
-            <p className="lq-card-sub">
-              Researched, qualified, and SQL volume — last 6 months
-            </p>
-            <TrendChart data={trend} />
-            <div className="lq-legend">
-              <span>
-                <i style={{ background: "#f97316" }} />
-                Researched
-              </span>
-              <span>
-                <i style={{ background: "#22c55e" }} />
-                Qualified
-              </span>
-              <span>
-                <i style={{ background: "#3b82f6" }} />
-                SQL
-              </span>
+            <div>
+              <h4>Outcome</h4>
+              <p>
+                Filtering out unqualified prospects improved response rates and
+                handed the sales team a shorter, higher-confidence list to work.
+              </p>
             </div>
-          </Reveal>
-
-          <Reveal delay={100} className="lq-card">
-            <h3 className="lq-card-title">Lead source mix</h3>
-            <p className="lq-card-sub">
-              Where researched leads are verified from
-            </p>
-            <SourceChart data={sources} />
-            <div className="lq-channel-list">
-              {sources.map((s, i) => (
-                <span key={s.key}>
-                  <i
-                    style={{
-                      background: CHART_COLORS[i % CHART_COLORS.length],
-                    }}
-                  />
-                  {s.channel} · {s.value}%
-                </span>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-
-        <div className="lq-grid-2">
-          <Reveal delay={0} className="lq-card">
-            <CardToolbar />
-            <h3 className="lq-card-title">ICP evaluation criteria</h3>
-            <p className="lq-card-sub">
-              Average score across pain point, intent, growth, budget,
-              authority, and fit
-            </p>
-            <CriteriaChart data={criteria} />
-          </Reveal>
-
-          <Reveal delay={100} className="lq-card">
-            <h3 className="lq-card-title">ICP fit distribution</h3>
-            <p className="lq-card-sub">
-              Where the qualified pool lands, this quarter
-            </p>
-            <FitChart data={fit} />
-          </Reveal>
-        </div>
-
-        {/* ---------------- Live activity feed ---------------- */}
-        <h2 className="lq-section-title">Live activity</h2>
-        <p className="lq-section-sub">
-          Research, evaluation, scoring, and handoff events as they happen.
-        </p>
-
-        <Reveal delay={0}>
-          <div className="lq-card lq-feed-card">
-            {feed.length === 0 && (
-              <div className="lq-feed-empty">Waiting for the first event…</div>
-            )}
-            <ul className="lq-feed-list">
-              {feed.map((item) => (
-                <li
-                  key={item.id}
-                  className={`lq-feed-item lq-feed-${item.type}`}
-                >
-                  <span className="lq-feed-icon">
-                    <Icon name={FEED_ICON[item.type] || "search"} size={14} />
-                  </span>
-                  <span className="lq-feed-text">
-                    <strong>{item.verb}</strong>
-                    <span className="lq-feed-name">
-                      {" "}
-                      — {item.name}, {item.company}
-                    </span>
-                    <span className="lq-feed-channel"> · {item.channel}</span>
-                  </span>
-                  <span className="lq-feed-time">{timeAgo(item.ts, now)}</span>
-                </li>
-              ))}
-            </ul>
           </div>
-        </Reveal>
-
-        {/* ---------------- Process stages ---------------- */}
-        <h2 className="lq-section-title">How I qualify a lead</h2>
-        <div className="lq-stages">
-          {STAGES.map((s, i) => (
-            <Reveal delay={i * 70} key={s.n} className="lq-stage-row">
-              <div className="lq-stage-icon">
-                <Icon name={s.icon} size={16} />
-              </div>
-              <div className="lq-stage-title">
-                <span className="lq-stage-n">{s.n}</span> {s.title}
-              </div>
-              <div className="lq-stage-body">{s.body}</div>
-            </Reveal>
-          ))}
-        </div>
-
-        {/* ---------------- Footer columns ---------------- */}
-        <div className="lq-footer-grid">
-          <div>
-            <h4>What I evaluate</h4>
-            <p>
-              ICP fit, business needs, company size, industry, budget, and
-              decision-making authority — verified before a lead ever reaches
-              sales.
-            </p>
-          </div>
-          <div>
-            <h4>Tooling</h4>
-            <p>
-              LinkedIn, company websites, and prospecting databases for
-              research; CRM for qualification status, engagement history, and
-              handoff notes.
-            </p>
-          </div>
-          <div>
-            <h4>Outcome</h4>
-            <p>
-              Filtering out unqualified prospects improved response rates and
-              handed the sales team a shorter, higher-confidence list to work.
-            </p>
-          </div>
-        </div>
-      </main>
-    </div>
+          <div className="lq-footer-bottom"></div>
+        </footer>
+      </div>
+      <Footer />
+    </>
   );
 }

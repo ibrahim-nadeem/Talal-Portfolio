@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./LeadGen.css";
 import { GrowthChart, ChannelChart, FunnelChart } from "../components/charts";
 import Navbar from "../components/nav/navbar";
+import Footer from "../components/footer/Footer";
 
 const BASE_STATS = {
   leadsCaptured: 18420,
@@ -261,7 +262,6 @@ function CardToolbar() {
   );
 }
 export default function LeadGenPage() {
-    <Navbar />
   // live counters, seeded from the static baseline
   const [stats, setStats] = useState(BASE_STATS);
   const [growth, setGrowth] = useState(BASE_GROWTH);
@@ -396,230 +396,224 @@ export default function LeadGenPage() {
   const leadsDisplay = useCountUp(stats.leadsCaptured, 900);
 
   return (
-    
-    <div className="lg-root">
-      <header className="lg-topbar">
-        <div className="lg-topbar-left">
-          <span className="lg-dot" />
-          <span className="lg-brand">Lead Magnet Studio</span>
-          <Icon name="trend" size={13} />
-        </div>
+    <>
+      <div className="lg-root">
+        <Navbar />
+        <main className="lg-main">
+          <nav className="lg-breadcrumb">
+            Portfolio <span className="lg-chev">›</span> Lead Generation
+          </nav>
 
-        <div className="lg-topbar-right">
-          <span className="lg-pulse-badge">
-            <span className="lg-pulse-dot" />
-            live
-          </span>
-        </div>
-      </header>
-
-      <main className="lg-main">
-        <nav className="lg-breadcrumb">
-          Portfolio <span className="lg-chev">›</span> Lead Generation
-        </nav>
-
-        <h1 className="lg-title">Lead Generation</h1>
-        <p className="lg-subtitle">
-          How I build and measure a capture-to-conversion funnel — the
-          structure, the channel mix and the numbers that come out of it.
-        </p>
-        <div className="lg-service-badge">Service · 2024—2026</div>
-
-        <hr className="lg-hr" />
-
-        {/* ---------------- Top stats ---------------- */}
-        <section className="lg-stats-row">
-          <div className="lg-stat">
-            <div className="lg-stat-value">{fmtNumber(leadsDisplay)}</div>
-            <div className="lg-stat-label">Leads captured</div>
-          </div>
-          <div className="lg-stat">
-            <div className="lg-stat-value">{stats.leadToMqlRate}%</div>
-            <div className="lg-stat-label">Lead-to-MQL rate</div>
-          </div>
-          <div className="lg-stat">
-            <div className="lg-stat-value">${stats.costPerLead}</div>
-            <div className="lg-stat-label">Cost per lead</div>
-          </div>
-          <div className="lg-stat">
-            <div className="lg-stat-value">{stats.campaignsRun}</div>
-            <div className="lg-stat-label">Campaigns run</div>
-          </div>
-        </section>
-
-        {/* ---------------- New this month strip ---------------- */}
-        <section className="lg-month-strip">
-          <div className="lg-month-head">
-            <h2>New this month</h2>
-            <p>Counts roll up live as activity streams in below.</p>
-          </div>
-          <div className="lg-month-grid">
-            <MonthTile
-              icon="user"
-              label="New leads"
-              value={monthCounts.lead + monthCounts.social}
-            />
-            <MonthTile
-              icon="mail"
-              label="Emails sent"
-              value={monthCounts.email}
-            />
-            <MonthTile
-              icon="filter"
-              label="Qualified to MQL"
-              value={monthCounts.mql}
-            />
-            <MonthTile
-              icon="phone"
-              label="Calls booked"
-              value={monthCounts.call}
-            />
-            <MonthTile
-              icon="handshake"
-              label="Customers won"
-              value={monthCounts.customer}
-            />
-            <MonthTile
-              icon="flag"
-              label="Total events"
-              value={totalNewThisMonth}
-              accent
-            />
-          </div>
-        </section>
-
-        {/* ---------------- Funnel performance ---------------- */}
-        <h2 className="lg-section-title">Funnel performance</h2>
-        <p className="lg-section-sub">
-          Every stage is instrumented, so the effect of a change is visible
-          within days.
-        </p>
-
-        <div className="lg-grid-2">
-          <div className="lg-card">
-            <CardToolbar />
-            <h3 className="lg-card-title">Lead growth</h3>
-            <p className="lg-card-sub">Total vs. qualified, last 6 months</p>
-            <GrowthChart data={growthChartData} />
-            <div className="lg-legend">
-              <span>
-                <i style={{ background: "var(--chart-1)" }} />
-                Total leads
-              </span>
-              <span>
-                <i style={{ background: "var(--chart-2)" }} />
-                Qualified
-              </span>
-            </div>
-          </div>
-
-          <div className="lg-card">
-            <h3 className="lg-card-title">Channel mix</h3>
-            <p className="lg-card-sub">Share of qualified leads</p>
-            <ChannelChart data={channelChartData} />
-            <div className="lg-channel-list">
-              {channels.map((c) => (
-                <span key={c.key}>
-                  <i style={{ background: c.color }} />
-                  {c.label} · {c.pct}%
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="lg-card lg-funnel-card">
-          <CardToolbar />
-          <h3 className="lg-card-title">Conversion funnel</h3>
-          <p className="lg-card-sub">
-            From first visit to closed customer this quarter
+          <h1 className="lg-title">Lead Generation</h1>
+          <p className="lg-subtitle">
+            How I build and measure a capture-to-conversion funnel — the
+            structure, the channel mix and the numbers that come out of it.
           </p>
-          <FunnelChart data={funnelChartData} />
-        </div>
+          <div className="lg-service-badge">Service · 2024—2026</div>
 
-        {/* ---------------- Live activity feed ---------------- */}
-        <h2 className="lg-section-title">Live activity</h2>
-        <p className="lg-section-sub">
-          Every lead, email, call and conversion as it happens.
-        </p>
+          <hr className="lg-hr" />
 
-        <div className="lg-card lg-feed-card" ref={feedRef}>
-          {feed.length === 0 && (
-            <div className="lg-feed-empty">Waiting for the first event…</div>
-          )}
-          <ul className="lg-feed-list">
-            {feed.map((item) => (
-              <li key={item.id} className={`lg-feed-item lg-feed-${item.type}`}>
-                <span className="lg-feed-icon">
-                  <Icon
-                    name={
-                      item.type === "email"
-                        ? "mail"
-                        : item.type === "call"
-                          ? "phone"
-                          : item.type === "mql"
-                            ? "filter"
-                            : item.type === "customer"
-                              ? "handshake"
-                              : "user"
-                    }
-                    size={14}
-                  />
-                </span>
-                <span className="lg-feed-text">
-                  <strong>{item.verb}</strong>
-                  <span className="lg-feed-name"> — {item.name}</span>
-                  <span className="lg-feed-channel"> · {item.channel}</span>
-                </span>
-                <span className="lg-feed-time">{timeAgo(item.ts, now)}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* ---------------- Four stages ---------------- */}
-        <h2 className="lg-section-title">The four stages</h2>
-        <div className="lg-stages">
-          {STAGES.map((s) => (
-            <div className="lg-stage-row" key={s.n}>
-              <div className="lg-stage-icon">
-                <Icon name={s.icon} size={16} />
-              </div>
-              <div className="lg-stage-title">
-                <span className="lg-stage-n">{s.n}</span> {s.title}
-              </div>
-              <div className="lg-stage-body">{s.body}</div>
+          {/* ---------------- Top stats ---------------- */}
+          <section className="lg-stats-row">
+            <div className="lg-stat">
+              <div className="lg-stat-value">{fmtNumber(leadsDisplay)}</div>
+              <div className="lg-stat-label">Leads captured</div>
             </div>
-          ))}
-        </div>
+            <div className="lg-stat">
+              <div className="lg-stat-value">{stats.leadToMqlRate}%</div>
+              <div className="lg-stat-label">Lead-to-MQL rate</div>
+            </div>
+            <div className="lg-stat">
+              <div className="lg-stat-value">${stats.costPerLead}</div>
+              <div className="lg-stat-label">Cost per lead</div>
+            </div>
+            <div className="lg-stat">
+              <div className="lg-stat-value">{stats.campaignsRun}</div>
+              <div className="lg-stat-label">Campaigns run</div>
+            </div>
+          </section>
 
-        {/* ---------------- Footer columns ---------------- */}
-        <div className="lg-footer-grid">
-          <div>
-            <h4>What I measure</h4>
-            <p>
-              Traffic quality, form completion, lead score distribution, MQL
-              rate and cost per acquired customer — reviewed weekly, not
-              quarterly.
-            </p>
+          {/* ---------------- New this month strip ---------------- */}
+          <section className="lg-month-strip">
+            <div className="lg-month-head">
+              <h2>New this month</h2>
+              <p>Counts roll up live as activity streams in below.</p>
+            </div>
+            <div className="lg-month-grid">
+              <MonthTile
+                icon="user"
+                label="New leads"
+                value={monthCounts.lead + monthCounts.social}
+              />
+              <MonthTile
+                icon="mail"
+                label="Emails sent"
+                value={monthCounts.email}
+              />
+              <MonthTile
+                icon="filter"
+                label="Qualified to MQL"
+                value={monthCounts.mql}
+              />
+              <MonthTile
+                icon="phone"
+                label="Calls booked"
+                value={monthCounts.call}
+              />
+              <MonthTile
+                icon="handshake"
+                label="Customers won"
+                value={monthCounts.customer}
+              />
+              <MonthTile
+                icon="flag"
+                label="Total events"
+                value={totalNewThisMonth}
+                accent
+              />
+            </div>
+          </section>
+
+          {/* ---------------- Funnel performance ---------------- */}
+          <h2 className="lg-section-title">Funnel performance</h2>
+          <p className="lg-section-sub">
+            Every stage is instrumented, so the effect of a change is visible
+            within days.
+          </p>
+
+          <div className="lg-grid-2">
+            <div className="lg-card">
+              <CardToolbar />
+              <h3 className="lg-card-title">Lead growth</h3>
+              <p className="lg-card-sub">Total vs. qualified, last 6 months</p>
+              <GrowthChart data={growthChartData} />
+              <div className="lg-legend">
+                <span>
+                  <i style={{ background: "var(--chart-1)" }} />
+                  Total leads
+                </span>
+                <span>
+                  <i style={{ background: "var(--chart-2)" }} />
+                  Qualified
+                </span>
+              </div>
+            </div>
+
+            <div className="lg-card">
+              <h3 className="lg-card-title">Channel mix</h3>
+              <p className="lg-card-sub">Share of qualified leads</p>
+              <ChannelChart data={channelChartData} />
+              <div className="lg-channel-list">
+                {channels.map((c) => (
+                  <span key={c.key}>
+                    <i style={{ background: c.color }} />
+                    {c.label} · {c.pct}%
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
-          <div>
-            <h4>Tooling</h4>
-            <p>
-              React landing pages, event tracking, CRM sync and automated
-              scoring rules wired into email and ad platforms.
+
+          <div className="lg-card lg-funnel-card">
+            <CardToolbar />
+            <h3 className="lg-card-title">Conversion funnel</h3>
+            <p className="lg-card-sub">
+              From first visit to closed customer this quarter
             </p>
+            <FunnelChart data={funnelChartData} />
           </div>
-          <div>
-            <h4>Typical timeline</h4>
-            <p>
-              Two weeks to instrument and baseline, four weeks to optimise copy
-              and targeting, ongoing iteration from there.
-            </p>
+
+          {/* ---------------- Live activity feed ---------------- */}
+          <h2 className="lg-section-title">Live activity</h2>
+          <p className="lg-section-sub">
+            Every lead, email, call and conversion as it happens.
+          </p>
+
+          <div className="lg-card lg-feed-card" ref={feedRef}>
+            {feed.length === 0 && (
+              <div className="lg-feed-empty">Waiting for the first event…</div>
+            )}
+            <ul className="lg-feed-list">
+              {feed.map((item) => (
+                <li
+                  key={item.id}
+                  className={`lg-feed-item lg-feed-${item.type}`}
+                >
+                  <span className="lg-feed-icon">
+                    <Icon
+                      name={
+                        item.type === "email"
+                          ? "mail"
+                          : item.type === "call"
+                            ? "phone"
+                            : item.type === "mql"
+                              ? "filter"
+                              : item.type === "customer"
+                                ? "handshake"
+                                : "user"
+                      }
+                      size={14}
+                    />
+                  </span>
+                  <span className="lg-feed-text">
+                    <strong>{item.verb}</strong>
+                    <span className="lg-feed-name"> — {item.name}</span>
+                    <span className="lg-feed-channel"> · {item.channel}</span>
+                  </span>
+                  <span className="lg-feed-time">{timeAgo(item.ts, now)}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
-      </main>
-    </div>
+
+          {/* ---------------- Four stages ---------------- */}
+          <h2 className="lg-section-title">The four stages</h2>
+          <div className="lg-stages">
+            {STAGES.map((s) => (
+              <div className="lg-stage-row" key={s.n}>
+                <div className="lg-stage-icon">
+                  <Icon name={s.icon} size={16} />
+                </div>
+                <div className="lg-stage-title">
+                  <span className="lg-stage-n">{s.n}</span> {s.title}
+                </div>
+                <div className="lg-stage-body">{s.body}</div>
+              </div>
+            ))}
+          </div>
+        </main>
+
+        {/* ---------------- Footer ---------------- */}
+        <footer className="lg-footer">
+          <div className="lg-footer-grid">
+            <div>
+              <h4>What I measure</h4>
+              <p>
+                Traffic quality, form completion, lead score distribution, MQL
+                rate and cost per acquired customer — reviewed weekly, not
+                quarterly.
+              </p>
+            </div>
+            <div>
+              <h4>Tooling</h4>
+              <p>
+                React landing pages, event tracking, CRM sync and automated
+                scoring rules wired into email and ad platforms.
+              </p>
+            </div>
+            <div>
+              <h4>Typical timeline</h4>
+              <p>
+                Two weeks to instrument and baseline, four weeks to optimise
+                copy and targeting, ongoing iteration from there.
+              </p>
+            </div>
+          </div>
+          <div className="lg-footer-bottom"></div>
+        </footer>
+      </div>
+      <Footer />
+    </>
   );
 }
 
@@ -634,6 +628,5 @@ function MonthTile({ icon, label, value, accent }) {
         <div className="lg-month-tile-label">{label}</div>
       </div>
     </div>
-    
   );
 }

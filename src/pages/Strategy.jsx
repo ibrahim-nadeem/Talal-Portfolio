@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./StrategyPage.css";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/nav/navbar";
+import Footer from "../components/footer/Footer";
 
 /* ---------- inline icons ---------- */
 
@@ -226,77 +228,81 @@ function RouteChart() {
 /* ---------- page ---------- */
 
 export default function StrategyPage() {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
-    <div className="bs-page">
-      <div className="contour-field" aria-hidden="true">
-        {[0, 1, 2, 3, 4].map((i) => (
-          <div key={i} className={`contour contour-${i}`} />
-        ))}
-      </div>
-
-      <section className="hero">
-        <div className="hero-inner">
-          <p className="eyebrow">FIELD MANUAL &mdash; STRATEGIC PLANNING</p>
-          <h1 className="hero-title">
-            Know the terrain <em>before</em> you move.
-          </h1>
-          <p className="hero-sub">
-            Good strategy isn't a slide deck. It's a map of where you stand,
-            where you're headed, and the route between the two &mdash; drawn
-            honestly enough to actually follow.
-          </p>
-          <div className="hero-cta">
-            <button
-              className="btn btn-primary"
-              onClick={() => navigate("/contact")}
-            >
-              Plan your Route
-            </button>{" "}
-          </div>
-        </div>
-        <div className="hero-compass" aria-hidden="true">
-          <div className="hero-compass-ring">
-            <CompassNeedle className="hero-needle" />
-          </div>
-        </div>
-      </section>
-
-      <section className="moves">
-        <div className="moves-intro">
-          <span className="eyebrow">THE FOUR MOVES</span>
-          <h2>Strategy has a direction for each move.</h2>
-        </div>
-        <CompassQuadrants />
-      </section>
-
-      <section className="route">
-        <div className="route-intro">
-          <span className="eyebrow">FIELD NOTES</span>
-          <h2>
-            The route rarely runs straight &mdash; it still has to run
-            somewhere.
-          </h2>
-          <p>
-            Each waypoint is a decision that held. The line only bends forward
-            because the destination stayed fixed even when the path didn't.
-          </p>
-        </div>
-        <RouteChart />
-      </section>
-
-      <section className="stats">
-        <div className="stats-inner">
-          {STATS.map((s) => (
-            <StatCounter key={s.label} {...s} />
+    <>
+      <Navbar />
+      <div className="bs-page">
+        <div className="contour-field" aria-hidden="true">
+          {[0, 1, 2, 3, 4].map((i) => (
+            <div key={i} className={`contour contour-${i}`} />
           ))}
         </div>
-      </section>
 
-      <footer className="cta-footer">
-        <div className="legend-line" aria-hidden="true" />
-        <h2>Ready to chart your own route?</h2>        
-      </footer>
-    </div>
+        <section className="hero">
+          <div className="hero-inner">
+            <p className="eyebrow">FIELD MANUAL &mdash; STRATEGIC PLANNING</p>
+            <h1 className="hero-title">
+              Know the terrain <em>before</em> you move.
+            </h1>
+            <p className="hero-sub">
+              Good strategy isn't a slide deck. It's a map of where you stand,
+              where you're headed, and the route between the two &mdash; drawn
+              honestly enough to actually follow.
+            </p>
+            <div className="hero-cta">
+              <button
+                className="btn btn-primary"
+                onClick={() => navigate("/contact")}
+              >
+                Plan your Route
+              </button>{" "}
+            </div>
+          </div>
+          <div className="hero-compass" aria-hidden="true">
+            <div className="hero-compass-ring">
+              <CompassNeedle className="hero-needle" />
+            </div>
+          </div>
+        </section>
+
+        <section className="moves">
+          <div className="moves-intro">
+            <span className="eyebrow">THE FOUR MOVES</span>
+            <h2>Strategy has a direction for each move.</h2>
+          </div>
+          <CompassQuadrants />
+        </section>
+
+        <section className="route">
+          <div className="route-intro">
+            <span className="eyebrow">FIELD NOTES</span>
+            <h2>
+              The route rarely runs straight &mdash; it still has to run
+              somewhere.
+            </h2>
+            <p>
+              Each waypoint is a decision that held. The line only bends forward
+              because the destination stayed fixed even when the path didn't.
+            </p>
+          </div>
+          <RouteChart />
+        </section>
+
+        <section className="stats">
+          <div className="stats-inner">
+            {STATS.map((s) => (
+              <StatCounter key={s.label} {...s} />
+            ))}
+          </div>
+        </section>
+
+        <footer className="cta-footer">
+          <div className="legend-line" aria-hidden="true" />
+          <h2>Ready to chart your own route?</h2>
+        </footer>
+      </div>
+      <Footer />
+    </>
   );
 }
