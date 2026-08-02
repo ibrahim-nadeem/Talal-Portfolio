@@ -296,6 +296,7 @@ function FlightPath({ pathD, containerRef }) {
 /* ---------- page ---------- */
 
 export default function EmailOutreach() {
+  const navigate = useNavigate();
   const journeyRef = useRef(null);
 
   const pathD =
