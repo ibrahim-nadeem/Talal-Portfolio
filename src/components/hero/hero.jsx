@@ -36,9 +36,7 @@ export default function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
         >
-          <motion.p className="tag">
-            Senior Business Development Specialist
-          </motion.p>
+          <motion.p className="tag">Senior Business Developer</motion.p>
 
           <motion.h1>
             Helping Businesses Generate

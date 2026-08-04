@@ -1,54 +1,83 @@
-  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+/* =========================
+   GLOBAL SMOOTH SCROLL
+========================= */
 
-*{
+html{
+    scroll-behavior:smooth;
+    scroll-padding-top:90px;
+}
+
+html,
+body,
+#root{
     margin:0;
     padding:0;
-    box-sizing:border-box;
-}
-
- 
-
-body{
-    background:black;
-    color:white;
-    font-family:"Poppins",sans-serif;
+    width:100%;
+    min-height:100%;
     overflow-x:hidden;
+    background:#050816;
+    font-family:'Poppins',sans-serif;
 }
+
+/* Improve Rendering */
+
+*{
+    box-sizing:border-box;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+}
+
+/* Section Scroll */
+
+section{
+    position:relative;
+    scroll-margin-top:90px;
+}
+
+/* Selection */
+
+::selection{
+    background:#00e5ff;
+    color:#050816;
+}
+
+/* Smooth Images */
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+/* Custom Scrollbar */
 
 ::-webkit-scrollbar{
     width:10px;
 }
 
 ::-webkit-scrollbar-track{
-    background:#0b1120;
+    background:#050816;
 }
 
 ::-webkit-scrollbar-thumb{
-    background:#00d9ff;
     border-radius:20px;
+    background:linear-gradient(
+        to bottom,
+        #00e5ff,
+        #7b2cff
+    );
 }
 
-a{
-    text-decoration:none;
-    color:inherit;
+::-webkit-scrollbar-thumb:hover{
+    background:linear-gradient(
+        to bottom,
+        #7b2cff,
+        #00e5ff
+    );
 }
 
-ul{
-    list-style:none;
-}
+/* Firefox */
 
-img{
-    width:100%;
-    display:block;
-}
-
-button{
-    border:none;
-    cursor:pointer;
-    font-family:inherit;
-}
-
-section{
-    width:100%;
-    position:relative;
+html{
+    scrollbar-width:thin;
+    scrollbar-color:#00e5ff #050816;
 }

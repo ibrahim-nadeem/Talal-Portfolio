@@ -10,20 +10,20 @@ const testimonials = [
       "Talal consistently delivered high-quality leads and helped us connect with key decision-makers. His outreach strategy significantly improved our sales pipeline.",
   },
   {
-    name: "Sarah Williams",
-    role: "Sales Director",
+    name: "Raja Sharma",
+    role: "Data Engineer",
     review:
       "Professional, proactive, and highly organised. Our LinkedIn campaigns generated excellent meetings thanks to Talal's expertise.",
   },
   {
-    name: "David Brown",
-    role: "Founder • IT Agency",
+    name: "Musa",
+    role: "Data Engineer",
     review:
       "Outstanding communication and business development skills. Talal became an important part of our client acquisition process.",
   },
   {
-    name: "Emily Carter",
-    role: "Growth Manager",
+    name: "Hamza",
+    role: "Data Engineer",
     review:
       "His prospect research and email outreach delivered qualified opportunities every week. Highly recommended for B2B growth.",
   },
@@ -81,11 +81,13 @@ export default function Testimonials() {
               <p className="review">"{item.review}"</p>
 
               <div className="client">
-                <div className="avatar">{item.name.charAt(0)}</div>
+                <div className="avatar">
+                  {(item.name || "?").trim().charAt(0).toUpperCase()}
+                </div>
 
                 <div>
-                  <h4>{item.name}</h4>
-                  <span>{item.role}</span>
+                  <h4>{item.name.trim()}</h4>
+                  <span>{item.role.trim()}</span>
                 </div>
               </div>
             </motion.div>

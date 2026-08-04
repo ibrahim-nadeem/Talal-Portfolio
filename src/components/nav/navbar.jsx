@@ -9,6 +9,7 @@ const links = [
   { name: "About", id: "about", type: "scroll" },
   { name: "Skills", id: "skills", type: "scroll" },
   { name: "Testimonials", id: "testimonials", type: "scroll" },
+  { name: "Pricing", id: "pricing", type: "route", path: "/pricing" },
 ];
 
 export default function Navbar() {
@@ -22,6 +23,8 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
+
+      if (location.pathname !== "/") return;
 
       const sections = document.querySelectorAll("section");
 
@@ -40,7 +43,15 @@ export default function Navbar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (location.pathname === "/pricing") {
+      setActive("pricing");
+    } else if (location.pathname === "/") {
+      setActive("hero");
+    }
+  }, [location.pathname]);
 
   const handleNavigation = (item) => {
     setMobile(false);
@@ -77,20 +88,16 @@ export default function Navbar() {
       initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8 }}
-      className={scrolled ? "navbar navbar-scroll" : "navbar"}
+      className={scrolled ? "navbar scrolled" : "navbar"}
     >
       {/* Logo */}
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        className="logo"
-        onClick={() => navigate("/")}
-      >
+      <div className="logo" onClick={() => navigate("/")}>
         <img
-          src="/images/bizzlinks.jpg" // apni image ka path
+          src="/images/bizzlinks.jpg"
           alt="Talal Logo"
           className="logo-img"
         />
-      </motion.div>
+      </div>
 
       {/* Navigation */}
       <ul className={mobile ? "nav-links active" : "nav-links"}>
@@ -98,7 +105,7 @@ export default function Navbar() {
           <li key={item.name}>
             <button
               onClick={() => handleNavigation(item)}
-              className={active === item.id ? "active-link" : ""}
+              className={active === item.id ? "active" : ""}
             >
               {item.name}
             </button>
@@ -106,24 +113,24 @@ export default function Navbar() {
         ))}
       </ul>
 
-      {/* CTA */}
-      <motion.button
-        onClick={goContact}
-        whileHover={{
-          scale: 1.05,
-          y: -3,
-        }}
-        whileTap={{
-          scale: 0.95,
-        }}
-        className="cta"
-      >
-        Let's Talk
-      </motion.button>
+      <div className="nav-right">
+        {/* CTA */}
+        <motion.button
+          onClick={goContact}
+          whileHover={{ scale: 1.05, y: -3 }}
+          whileTap={{ scale: 0.95 }}
+          className="cta"
+        >
+          Let's Talk
+        </motion.button>
 
-      {/* Mobile Menu */}
-      <div className="menu" onClick={() => setMobile(!mobile)}>
-        {mobile ? <FaTimes size={22} /> : <FaBars size={22} />}
+        {/* Mobile Menu */}
+        <div
+          className={mobile ? "menu open" : "menu"}
+          onClick={() => setMobile(!mobile)}
+        >
+          {mobile ? <FaTimes size={22} /> : <FaBars size={22} />}
+        </div>
       </div>
     </motion.nav>
   );

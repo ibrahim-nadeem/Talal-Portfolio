@@ -451,7 +451,6 @@ const Contact = () => {
                       "Sales Outreach Campaign",
                       "Email Marketing",
                       "Business Development Strategy",
-                      "Market Research",
                       "Appointment Setting",
                       "Other",
                     ]}
