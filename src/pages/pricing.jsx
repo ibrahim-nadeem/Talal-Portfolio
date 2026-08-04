@@ -7,13 +7,12 @@ import Footer from "../components/footer/footer";
 const plans = [
   {
     id: 1,
-    badge: "Professional Plan",
-    title: "Professional",
-    price: "15,000",
+    badge: "Basic Plan",
+    title: "Basic",
+    price: "15,000 Rs",
     duration: "PKR / Month",
     featured: false,
-    payoneerLink: "https://payoneer.com/rp/REPLACE_WITH_YOUR_PAYMENT_REQUEST_1",
-    features: [
+     features: [
       "LinkedIn Profile Handling",
       "Part-Time – 4 Hours Work",
       "Weekly Updates",
@@ -24,9 +23,9 @@ const plans = [
   },
   {
     id: 2,
-    badge: "Basic Plan",
-    title: "Basic",
-    price: "20,000",
+    badge: "premium  Plan",
+    title: "Premium",
+    price: "20,000 Rs",
     duration: "PKR / Month",
     featured: true,
     features: [

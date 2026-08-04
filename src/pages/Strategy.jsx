@@ -445,19 +445,19 @@ const funnelStages = [
   {
     label: "Reach",
     sub: "Cold audience touched across channels",
-    value: "50,000",
+    value: "10,000",
     width: "100%",
   },
   {
     label: "Engaged",
     sub: "Clicked, replied or watched",
-    value: "9,400",
+    value: "5,000",
     width: "86%",
   },
   {
     label: "Leads",
     sub: "Shared contact / booked interest",
-    value: "2,150",
+    value: "3500",
     width: "72%",
   },
   {
